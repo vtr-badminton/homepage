@@ -1,0 +1,4 @@
+lcd target
+cd badminton/prototype
+mput *
+
