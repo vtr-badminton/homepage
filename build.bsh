@@ -1,0 +1,8 @@
+#!/bin/bash -e
+
+/usr/local/bin/boot homepage target
+
+cd target
+chmod -r ug+w *
+ftp -p -i vt-rinteln.de < deploy.ftp
+
