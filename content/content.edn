@@ -4,12 +4,24 @@
                  :liga "Bezirksklasse"
                  :turnierde-href "http://www.turnier.de/sport/team.aspx?id=94E5F5B7-8DF7-407A-B203-76B876E42DBE&team=198"
                  :bild "m1-2016.jpg"
-                 :spieler ["Witoslaw Koczewski"
-                           "Olga Koczewski"]}
+                 :spieler ["Sven Aits"
+                           "Björn Eilert"
+                           "Fabian Korte"
+                           "Stephan Rinne"
+                           "Tabea Korte"
+                           "Angelina Kutscher"]}
                 {:name "2. Mannschaft"
                  :liga "Kreisliga"
                  :turnierde-href "http://www.turnier.de/sport/team.aspx?id=94E5F5B7-8DF7-407A-B203-76B876E42DBE&team=295"
-                 :bild "m2-2016.jpg"}
+                 :bild "m2-2016.jpg"
+                 :spieler["Sebastian Hoppe"
+                          "Dominic Kirstein"
+                          "Walter Westermann"
+                          "Andreas Winter"
+                          "Fabian Zilm"
+                          "Brigitte Brakemeier"
+                          "Franziska Brakemeier"
+                          "Nadine Reimann"]}
                 ]
 
  :kontakt {:name "Sven Aits"
