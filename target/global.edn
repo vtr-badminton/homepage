@@ -1,0 +1,32 @@
+{
+
+ :mannschaften [{:name "1. Mannschaft"
+                 :liga "Bezirksklasse"
+                 :turnierde-href "http://www.turnier.de/sport/team.aspx?id=94E5F5B7-8DF7-407A-B203-76B876E42DBE&team=198"
+                 :bild "m1-2016.jpg"
+                 :spieler ["Witoslaw Koczewski"
+                           "Olga Koczewski"]}
+                {:name "2. Mannschaft"
+                 :liga "Kreisliga"
+                 :turnierde-href "http://www.turnier.de/sport/team.aspx?id=94E5F5B7-8DF7-407A-B203-76B876E42DBE&team=295"
+                 :bild "m2-2016.jpg"}
+                ]
+
+ :kontakt {:name "Sven Aits"
+           :email "sven.aits@web.de"
+           :telefon "0171 5417332"}
+
+ :trainingszeiten [{:zeit "Montag, 19:00 - 21:45"
+                    :gruppe "Erwachsene"}
+                   {:zeit "Mittwoch, 18:00 - 20:00"
+                    :gruppe "Schüler und Jugendliche"}
+                   {:zeit "Freitags, 19:30 - 21:30"
+                    :gruppe "Erwachsene"}]
+
+ :trainingsort {:adresse "Rinteln, Burgfeldsheide 4"
+                :halle "Halle 2"
+                :href "https://www.google.de/maps/place/Burgfeldsweide+4,+31737+Rinteln"}
+
+ :url "http://badminton.vt-rinteln.de"
+ :title "BADMINTON"
+ :subtitle "Vereinigte Turnerschaft RINTELN"}
