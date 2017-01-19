@@ -7,6 +7,7 @@
 
 
 (require '[clojure.edn :as edn]
+         '[clojure.string :as str]
          '[boot.core       :as boot]
          '[clojure.java.io :as io]
          '[hiccup.core :refer [h]]
@@ -16,10 +17,20 @@
 
 (defn- load-md-file [file]
   (let [md (slurp (boot/tmp-file file))
-        html (markdown/md-to-html-string md)]
-    {:name (boot/tmp-path file)
+        html (markdown/md-to-html-string md)
+        name (boot/tmp-path file)
+        name (.substring name 0 (.lastIndexOf name "."))
+        title (.substring
+               (first (str/split-lines md))
+               2)
+        short-md (nth (str/split-lines md) 2)
+        short-html (markdown/md-to-html-string short-md)]
+    {:name name
+     :html-filename (str name ".html")
      :md md
-     :html html}))
+     :html html
+     :title title
+     :short-html short-html}))
 
 (defn- load-md-files [fileset]
   (let [files (boot/input-files fileset)
@@ -27,15 +38,68 @@
         files (map load-md-file files)]
     {:artikels (vec files)}))
 
-(defn- render-main-content [artikel]
-  [:article
-   [:div (:html artikel)]])
+(defn- render-artikel [content artikel]
+  [:div
+   [:article
+    [:div (:html artikel)]]
+   [:br][:hr]
+   [:i [:a {:href (:url content)} "Zurück zur Startseite..."]]])
+
+(defn- render-main-content [content]
+  [:div
+   (for [artikel (reverse (sort-by :name (:artikels content)))]
+     [:div
+      [:div.post-preview
+       [:a {:href (:html-filename artikel)}
+        [:h3.post-title (h (:title artikel))]
+        [:p (:short-html artikel)]
+        [:p.post-meta [:i "Weiter lesen..."]]]]
+      [:hr]])])
 
 (defn- render-sidebar-block [title content]
   [:div.post-preview {:style "margin-bottom: 8rem;"}
-   [:h3.post-subtitle title]
+   [:h3.post-title title]
    [:div.post-meta
     content]])
+
+(defn- render-sidebar [content]
+  [:div
+
+   (render-sidebar-block
+    "Kontakt"
+    [:p
+     (get-in content [:kontakt :name])
+     [:br]
+     [:a {:href (str "tel:" (get-in content [:kontakt :telefon])) :target :_blank} (get-in content [:kontakt :telefon])]
+     [:br]
+     [:a {:href (str "mailto:" (get-in content [:kontakt :email])) :target :_blank} (get-in content [:kontakt :email])]])
+
+   (render-sidebar-block
+    "Training"
+    [:div
+     [:p
+      [:a {:href (get-in content [:trainingsort :href])  :target :_blank}
+       (get-in content [:trainingsort :adresse])]
+      [:br]
+      (get-in content [:trainingsort :halle])
+      ]
+     [:p
+      (for [zeit (:trainingszeiten content)]
+        [:div {:style "margin-bottom: 1rem;"}
+         (:zeit zeit)
+         [:br]
+         (:gruppe zeit)])]])
+
+   (for [mansch (:mannschaften content)]
+     (render-sidebar-block
+      (:name mansch)
+      [:div
+       [:p [:a {:href (:turnierde-href mansch)  :target :_blank} (:liga mansch)]]
+       [:p
+        (for [spieler (:spieler mansch)]
+          [:div (h spieler)])]]))
+
+   ] )
 
 (defn- render-page [content artikel]
   {:head [:head
@@ -70,49 +134,17 @@
                [:h5 (:subtitle content)]]]]]]
           [:div.container
            [:div.row
-            [:div#sidebar.col-sm-4
 
-             (render-sidebar-block
-              "Kontakt"
-              [:p
-               (get-in content [:kontakt :name])
-               [:br]
-               (get-in content [:kontakt :telefon])
-               [:br]
-               [:a {:href (str "mailto:" (get-in content [:kontakt :email])) :target :_blank} (get-in content [:kontakt :email])]])
+            [:div#main-content.col-sm-7
+             (if artikel
+               (render-artikel content artikel)
+               (render-main-content content))]
 
-             (render-sidebar-block
-              "Training"
-              [:div
-               [:p
-                [:a {:href (get-in content [:trainingsort :href])}
-                 (get-in content [:trainingsort :adresse])]
-                [:br]
-                (get-in content [:trainingsort :halle])
-                ]
-               [:p
-                (for [zeit (:trainingszeiten content)]
-                  [:div {:style "margin-bottom: 1rem;"}
-                   (:zeit zeit)
-                   [:br]
-                   (:gruppe zeit)])]])
+            [:div.col-sm-1]
 
-             (for [mansch (:mannschaften content)]
-               (render-sidebar-block
-                (:name mansch)
-                [:div
-                 [:p [:a {:href (:turnierde-href mansch)} (:liga mansch)]]
-                 [:p
-                  (for [spieler (:spieler mansch)]
-                    [:div (h spieler)])]]))
+            [:div#sidebar.col-sm-4 (render-sidebar content)]
 
-             ]
-
-
-
-
-            [:div#main-content.col-sm-8
-             (render-main-content artikel)]]]
+            ]]
 
           ;; (include-js "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js")
           ;; (include-js "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
@@ -123,25 +155,32 @@
 
           ]})
 
-(boot/deftask collect-info
-  "Collect Information"
+(boot/deftask homepage
+  "Build static site"
   []
   (let [tmp (boot/tmp-dir!)]
     (fn middleware [next-handler]
       (fn handler [fileset]
         (boot/empty-dir! tmp)
-        (let [out-file (io/file tmp "content.edn")
-              content (-> (boot/tmp-get fileset "content.edn")
+        (let [content (-> (boot/tmp-get fileset "content.edn")
                           boot/tmp-file
                           slurp
                           edn/read-string)
               content (merge content (load-md-files fileset))
-              index-page (render-page content (first (:artikels content)))
-              ]
-          (spit out-file (pr-str content))
-          (spit (io/file tmp "index.html") (html5 (:head index-page) (:body index-page))))
+              index-page (render-page content nil)]
+          (spit
+           (io/file tmp "index.html")
+           (html5 (:head index-page) (:body index-page)))
+          (doall (for [artikel (:artikels content)]
+                   (let [page (render-page content artikel)]
+                     (spit
+                      (io/file tmp (str (:html-filename artikel)))
+                      (html5 (:head page) (:body page))))))
+          )
+
         (-> fileset
             (boot/add-resource tmp)
             (boot/commit!)
             next-handler)
         ))))
+
