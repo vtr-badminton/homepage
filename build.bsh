@@ -3,5 +3,5 @@
 /usr/local/bin/boot homepage target
 
 chmod -R ug+w target
-ftp -p -i vt-rinteln.de < deploy.ftp
+ftp -p -i -v vt-rinteln.de < deploy.ftp
 
