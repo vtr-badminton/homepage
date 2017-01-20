@@ -26,7 +26,7 @@
 
  :kontakt {:name "Sven Aits"
            :email "sven.aits@web.de"
-           :telefon "0171 5417332"}
+           :telefon "05751 14868"}
 
  :trainingszeiten [{:zeit "Montag, 19:00 - 21:45"
                     :gruppe "Erwachsene"}

@@ -94,6 +94,7 @@
      (render-sidebar-block
       (:name mansch)
       [:div
+       (if (:bild mansch) [:img {:src (:bild mansch) :style "width: 100%; margin-top: 2rem;"}])
        [:p [:a {:href (:turnierde-href mansch)  :target :_blank} (:liga mansch)]]
        [:p
         (for [spieler (:spieler mansch)]
