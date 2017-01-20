@@ -18,7 +18,7 @@
                            "Nadine Reimann"
                            "Andreas Winter"
                            "Franziska Brakemeier"
-                           "Folker Furchbrich"
+                           "Volker Furchbrich"
                            "Doris Westermann"
                            "Walter Westermann"                         
                            "Fabian Zilm"
@@ -37,7 +37,7 @@
                    {:zeit "Freitags, 19:30 - 21:30"
                     :gruppe "Erwachsene"}]
 
- :trainingsort {:adresse "Rinteln, Burgfeldsheide 4"
+ :trainingsort {:adresse "Rinteln, Burgfeldsweide 4"
                 :halle "Halle 2"
                 :href "https://www.google.de/maps/place/Burgfeldsweide+4,+31737+Rinteln"}
 
