@@ -8,7 +8,7 @@ Kinder ab ca. 6 Jahren bringen alle koordinativen Voraussetzungen mit um diesen 
 
 **Kursstart ist am 20. Februar 2017 um 18:30 Uhr** in der Kreissporthalle Rinteln. Der Kurs beinhaltet 6 Übungseinheiten zu je einer Stunde und endet am 27. März 2017. Die Teilnahme ist kostenfrei.
 
-Anmeldungen werden gerne von Stefanie Schrader per Mail an stefanie.schrader@lichtsammler.com oder per Telefon unter 05751/919205 entgegen genommen. **Anmeldeschluss ist der 16. Februar 2017**.
+Anmeldungen werden gerne von Stefanie Schrader per Mail an [stefanie.schrader@lichtsammler.com](mailto:stefanie.schrader@lichtsammler.com) oder per Telefon unter [05751/919205](tel:05751919205) entgegen genommen. **Anmeldeschluss ist der 16. Februar 2017**.
 
 Bis bald in der Halle, eure
 Badmintonfreunde der VTR
