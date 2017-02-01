@@ -1,4 +1,4 @@
-# Kursangebot für Familien bei der VTR Badmintonsparte #
+# Kursangebot für Familien bei der VTR Badmintonsparte
 
 Aufgrund vieler Anfragen von Kollegen, Freunden oder auch interessierten Sportfreunden bietet die Badmintonsparte der VT Rinteln ab Februar einen Anfängerkurs für Familien an.
 
