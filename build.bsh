@@ -1,7 +1,9 @@
 #!/bin/bash -e
 
+echo "Building static site..."
 /usr/local/bin/boot -C homepage target
 
 chmod -R ug+w target
-ftp -p -i -v vt-rinteln.de < deploy.ftp > ~/badminton-deployment.log
+echo "Uploading to vt-rinteln.de/badminton"
+ftp -p -i -v vt-rinteln.de < deploy.ftp
 
