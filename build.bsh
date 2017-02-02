@@ -5,5 +5,5 @@ echo "Building static site..."
 
 chmod -R ug+w target
 echo "Uploading to vt-rinteln.de/badminton"
-ftp -p -i -v vt-rinteln.de < deploy.ftp
+ftp -p -i -v vt-rinteln.de < deploy.ftp > ~/badminton-ftp.log
 
