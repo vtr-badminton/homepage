@@ -1,3 +1,7 @@
 header.intro-header {
   background-image: url('bg-badminton.jpg')
 }
+
+article p img {
+  width: 100%;
+}

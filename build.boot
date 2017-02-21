@@ -23,14 +23,33 @@
         title (.substring
                (first (str/split-lines md))
                2)
-        short-md (nth (str/split-lines md) 2)
-        short-html (markdown/md-to-html-string short-md)]
+        lines (str/split-lines md)
+        line-count (count lines)
+        short-md (nth lines 2)
+        short-html (markdown/md-to-html-string short-md)
+        image-line (if (> line-count 3) (nth lines 4) nil)
+        image (if (and image-line (.startsWith image-line "!["))
+                (.substring
+                  image-line
+                  (inc (.indexOf image-line "("))
+                  (dec (.length image-line)))
+                nil)]
+        ; image (if
+        ;         (and (not (nil? image)) (.startsWith image "!["))
+        ;         image
+        ;         nil)]
+        ; image (if
+        ;         (.startsWith image "![")
+
+        ;         nil)]
+
     {:name name
      :html-filename (str name ".html")
      :md md
      :html html
      :title title
-     :short-html short-html}))
+     :short-html short-html
+     :image image}))
 
 (defn- load-md-files [fileset]
   (let [files (boot/input-files fileset)
@@ -52,9 +71,15 @@
       [:div.post-preview
        [:a {:href (:html-filename artikel)}
         [:h3.post-title (h (:title artikel))]
-        [:p (:short-html artikel)]
-        [:p.post-meta [:i "Weiter lesen..."]]]]
-      [:hr]])])
+        [:div
+          (if (:image artikel)
+            [:img {:src (:image artikel)
+                   :style "width: 25%; float: left; margin-right: 1rem;"}])
+          (:short-html artikel)
+          [:i "Weiter lesen..."]
+          [:div.clearfix]]]]
+      [:hr]
+      [:br]])])
 
 (defn- render-sidebar-block [title content]
   [:div.post-preview {:style "margin-bottom: 8rem;"}
@@ -81,8 +106,8 @@
       [:a {:href (get-in content [:trainingsort :href])  :target :_blank}
        (get-in content [:trainingsort :adresse])]
       [:br]
-      (get-in content [:trainingsort :halle])
-      ]
+      (get-in content [:trainingsort :halle])]
+
      [:p
       (for [zeit (:trainingszeiten content)]
         [:div {:style "margin-bottom: 1rem;"}
@@ -98,9 +123,9 @@
        [:p [:a {:href (:turnierde-href mansch)  :target :_blank} (:liga mansch)]]
        [:p
         (for [spieler (:spieler mansch)]
-          [:div (h spieler)])]]))
+          [:div (h spieler)])]]))])
 
-   ] )
+
 
 (defn- render-page [content artikel]
   {:head [:head
@@ -143,18 +168,18 @@
 
             [:div.col-sm-1]
 
-            [:div#sidebar.col-sm-4 (render-sidebar content)]
+            [:div#sidebar.col-sm-4 (render-sidebar content)]]]
 
-            ]]
+
 
           ;; (include-js "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js")
           ;; (include-js "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
 
           (include-js "vendor/jquery/jquery.min.js")
           (include-js "vendor/bootstrap/js/bootstrap.min.js")
-          (include-js "js/clean-blog.min.js")
+          (include-js "js/clean-blog.min.js")]})
 
-          ]})
+
 
 (boot/deftask homepage
   "Build static site"
@@ -176,12 +201,10 @@
                    (let [page (render-page content artikel)]
                      (spit
                       (io/file tmp (str (:html-filename artikel)))
-                      (html5 (:head page) (:body page))))))
-          )
+                      (html5 (:head page) (:body page)))))))
+
 
         (-> fileset
             (boot/add-resource tmp)
             (boot/commit!)
-            next-handler)
-        ))))
-
+            next-handler)))))
