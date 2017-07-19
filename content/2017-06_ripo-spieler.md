@@ -8,5 +8,5 @@ Die Liste wird auf [alleturniere](https://www.turnier.de/sport/tournament.aspx?i
 
 [Meldeliste PDF](2017_ripo-meldeliste.pdf)
 
-Freimeldungen wurden von Sven Atis soweit möglich kombiniert.
-
+Die Freimeldungen haben wir jetzt kombiniert.Schaut bitte in die Meldelisten ob ihr einen Partner bekommen habt.Aufgrund der sehr erfreulichen Anzahl der Meldungen behalten wir uns vor,die Teilnehmerzahl ab einer bestimmten Personenzahl zu begrenzen und keine weiterenMeldungen anzunehmen, um das Turnier in einem annehmbaren Zeitrahmen durchführen zu können.
+Alle bisher eingegangenen Meldungen sind hiervon NICHT betroffen.
