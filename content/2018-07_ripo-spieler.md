@@ -10,3 +10,5 @@ Wir weisen noch einmal darauf hin, dass die maximale Meldezahl 16 Spieler/Paarun
 
 Das HE D wird auf 24 Teilnehmer erweitert, so dass momentan im HE D und HD D nur noch zwei Plätze frei sind.
 
+Der aktuelle Stand zu Meldungen und max. Teilnehmerzahlen steht auf [turnier.de](https://www.turnier.de/sport/tournament.aspx?id=6419B0AB-1065-4BBB-8252-77E5F242F739).
+
