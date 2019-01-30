@@ -13,17 +13,14 @@
                 {:name "2. Mannschaft"
                  :liga "Kreisliga"
                  :turnierde-href "http://www.turnier.de/sport/team.aspx?id=94E5F5B7-8DF7-407A-B203-76B876E42DBE&team=295"
-                 :bild "m2-2016.jpg"
-                 :spieler ["Sebastian Hoppe"
-                           "Nadine Reimann"
+                 :bild "m2-2019.jpg"
+                 :spieler ["Dominic Kirstein"
+                           "Volker Furchbrich"
+                           "Nadine Hübert"
                            "Andreas Winter"
                            "Franziska Brakemeier"
-                           "Volker Furchbrich"
-                           "Doris Westermann"
-                           "Walter Westermann"                         
-                           "Fabian Zilm"
-                           "Brigitte Brakemeier"
-                           "Dominic Kirstein"]}
+                           "Marcel Goetsch"
+                           "Walter Westermann"}
                 ]
 
  :kontakt {:name "Sven Aits"
