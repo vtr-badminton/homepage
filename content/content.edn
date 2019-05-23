@@ -23,9 +23,9 @@
                            "Marcel Goetsch"
                            "Walter Westermann"]}]
 
- :kontakt {:name "Sven Aits"
-           :email "sven.aits@web.de"
-           :telefon "05751 14868"}
+ :kontakt {:name "Andreas Winter"
+           :email "andreas958322@t-online.de"
+           :telefon "0171 7513481"}
 
  :trainingszeiten [{:zeit "Montag, 19:00 - 21:45"
                     :gruppe "Erwachsene"}
