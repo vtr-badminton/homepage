@@ -76,7 +76,6 @@
             [:img {:src (:image artikel)
                    :style "width: 25%; float: left; margin-right: 1rem;"}])
           (:short-html artikel)
-          [:i "Weiter lesen..."]
           [:div.clearfix]]]]
       [:hr]
       [:br]])])
