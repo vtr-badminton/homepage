@@ -1,6 +1,6 @@
 # VT Rinteln auf der Kreismeisterschaften Badminton O19 04./ 05. Mai 2019 in Bückeburg
 
-Ein Landesmeistertitel geht nach Schaumburg, drei mal Vizemeister
+Ein Landesmeistertitel geht nach Schaumburg, drei mal Vizemeister.
 
 ![Kreismeisterschaften](2019-05-23_kreismeisterschaften.jpg)
 
