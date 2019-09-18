@@ -1,11 +1,11 @@
-# Peiner Eulencup am 25. + 26.05.2019
+Saisonauftakt Badminton 14./ 15.09.2019
 
-Herrendoppel  Andreas Winter und Dominic Kirsten in Peine auf Platz 4.
+Für die beiden Badmintonmannschaften der VTRinteln begann am Wochenende 14./ 15.09. die Saison.
 
-![Peiner Eulencup](2019-05-27_peiner-eulencup.jpg)
+![Saisonauftakt](2019-09-18_saisonauftakt.jpg)
 
+Am Samstag startete die 1 Mannschaft um Sven Aits in der Bezirksliga Nord. Das Auftaktspiel gewannen die Rintelner in Top-Besetzung  mit 5:3. In der zweiten Begegnung trat die Mannschaft gegen sie SG Pennigsehl-Liebenau an. Das Spiel war von Anfang an hart umkämpft, das erste Herrendoppel  und das Damendoppel gingen an die Pennigsehler, das zweite Herrendoppel sowie das Mixed gingen an die Rintelner. Leider folgte aus den Einzeln nur ein Sieg, so dass es am Ende 3:5 gegen die Weserstädter hieß. 
 
-Am Sonntag, 25.05.2019 startete das Herrendoppel Andreas Winter/ Dominic Kirsten der VTRinteln in der D-Klasse beim  Peiner Eulencup. Insgesamt gingen knapp 30  Teilnehmer an den Start. 
+Am Sonntag folgte  das Auftaktspiel für die 2 Mannschaft der VTR in der Kreisliga gegen den BSC Stadthagen. Die Herrendoppel Wöbse/ Winter und Goetsch/ Kirstein siegten souverän, sämtliche Einzel gingen ebenfalls an die Rintelner. Auch das Mixed Winter/ Guse sigte, so dass am Ende ein deutlicher 7:1 Sieg stand. 
 
-Winter/ Kirstein belegten in der Vorrunde nach einer Niederlage und zwei Siegen Platz 2. Nach einem Sieg im Achtelfinale mussten sich die beiden im Viertelfinale gegen Ngoc Sang Ngo/ Oliver Fluthwedel vom SC Schwalbe behaupten und zogen mit einem deutlichen Zwei-Satz-Sieg ins Halbfinale ein.  Im Halbfinale gab es ein umkämpftes Match über drei Sätze gegen Andreas Niebuhr/ Alexander Wachtel (TSV Burgdorf), in dem die Rintelner Paarung schließlich mit 18:21 im dritten Satz das Nachsehen hatte. Im kleinen Finale um Platz drei reichte die Kraft nach den sechs vorhergehenden Spielen nicht mehr aus und Winter/ Kirstein erreichen nach einer Niederlage gegen Heß/ Heß ( VT Groß Ilsede) Platz 4.
-
+In zwei Wochen finden die nächsten Punktspiele statt und es heißt weiter Daumen drücken für beide Mannschaften. 
