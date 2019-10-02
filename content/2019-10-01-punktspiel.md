@@ -2,8 +2,7 @@
 
 Ein deutlicher Sieg – ein Unentschieden
 
-![2. Punktspiel Kreisligamannschaft VT Rinteln-Badminton
-](2019-10-01-punktspiel.jpg)
+![2. Punktspiel Kreisligamannschaft VT Rinteln-Badminton](2019-10-01-punktspiel.jpg)
 
 Am 29.09.  startetet die 2. Mannschaft der VTR in die zweite Runde. Gegen den TSV Hagenburg I gelang den Rintelnern ein souveräner 7:1 Sieg. Lediglich Walter Westermann hatte in seinem Einzel im dritten Satz mit 20:22 das Nachsehen und verlor denkbar knapp.
 
