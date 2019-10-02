@@ -1,4 +1,4 @@
-Zweites Punktspiel Kreisligamannschaft VT Rinteln-Badminton
+# Zweites Punktspiel Kreisligamannschaft VT Rinteln-Badminton
 
 Ein deutlicher Sieg – ein Unentschieden
 

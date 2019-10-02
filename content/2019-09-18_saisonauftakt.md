@@ -1,4 +1,4 @@
-Saisonauftakt Badminton 14./ 15.09.2019
+# Saisonauftakt Badminton 14./ 15.09.2019
 
 Für die beiden Badmintonmannschaften der VTRinteln begann am Wochenende 14./ 15.09. die Saison.
 
