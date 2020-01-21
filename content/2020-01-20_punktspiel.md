@@ -1,7 +1,6 @@
 # Gelungener Start ins Jahr 2020 – Punktspiele der 2. Mannschaft am 19.01.2020
 
-Die zweite Mannschaft der VTR startete am 19.01. ins neue Jahr. Zwei deutliche Siege
-sichern der Mannschaft um Andreas Winter vorerst die Tabellenführung in der Kreisliga.
+Die zweite Mannschaft der VTR startete am 19.01. ins neue Jahr. Zwei deutliche Siege sichern der Mannschaft um Andreas Winter vorerst die Tabellenführung in der Kreisliga.
 
 ![Punktspiel](2020-01-20_punktspiel.jpg)
 
