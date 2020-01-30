@@ -66,6 +66,10 @@
 
 (defn- render-main-content [content]
   [:div
+   [:div.dm2020
+    [:a {:href "dm2020/"
+         :style "display: flex; justify-content: center;"}
+     [:img {:src "dm2020.png"}]]]
    (for [artikel (reverse (sort-by :name (:artikels content)))]
      [:div
       [:div.post-preview
