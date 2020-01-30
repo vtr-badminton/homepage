@@ -68,8 +68,9 @@
   [:div
    [:div.dm2020
     [:a {:href "dm2020/"
-         :style "display: flex; justify-content: center;"}
-     [:img {:src "dm2020.png"}]]]
+         :style "display: flex; justify-content: center; padding: 1em;"}
+     [:img {:src "dm2020.png"
+            :style "width: 100%;"}]]]
    (for [artikel (reverse (sort-by :name (:artikels content)))]
      [:div
       [:div.post-preview
