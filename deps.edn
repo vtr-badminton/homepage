@@ -1,0 +1,10 @@
+{:paths ["src"]
+ :deps  {org.clojure/clojurescript {:mvn/version "RELEASE"}
+         org.clojure/spec.alpha    {:mvn/version "RELEASE"}}
+
+ :aliases {:build
+           {:paths ["src"]
+            :deps {io.github.clojure/tools.build {:git/tag "v0.6.2" :git/sha "226fb52"}
+                   hiccup/hiccup {:mvn/version "RELEASE"}
+                   markdown-clj/markdown-clj {:mvn/version "RELEASE"}}
+            :ns-default build}}}

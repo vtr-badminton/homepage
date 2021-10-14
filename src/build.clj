@@ -1,67 +1,18 @@
-(set-env!
- :source-paths #{"content"}
- :resource-paths #{"content", "ressources"}
- :dependencies '[[hiccup "1.0.5"]
-                 [markdown-clj "0.9.91"]])
-
-
-
-(require '[clojure.edn :as edn]
-         '[clojure.string :as str]
-         '[boot.core       :as boot]
-         '[clojure.java.io :as io]
-         '[hiccup.core :refer [h]]
-         '[hiccup.page :refer [html5 include-css include-js]]
-         '[markdown.core :as markdown])
-
-
-(defn- load-md-file [file]
-  (let [md (slurp (boot/tmp-file file))
-        html (markdown/md-to-html-string md)
-        name (boot/tmp-path file)
-        name (.substring name 0 (.lastIndexOf name "."))
-        title (.substring
-               (first (str/split-lines md))
-               2)
-        lines (str/split-lines md)
-        line-count (count lines)
-        short-md (nth lines 2)
-        short-html (markdown/md-to-html-string short-md)
-        image-line (if (> line-count 3) (nth lines 4) nil)
-        image (if (and image-line (.startsWith image-line "!["))
-                (.substring
-                  image-line
-                  (inc (.indexOf image-line "("))
-                  (dec (.length image-line)))
-                nil)]
-        ; image (if
-        ;         (and (not (nil? image)) (.startsWith image "!["))
-        ;         image
-        ;         nil)]
-        ; image (if
-        ;         (.startsWith image "![")
-
-        ;         nil)]
-
-    {:name name
-     :html-filename (str name ".html")
-     :md md
-     :html html
-     :title title
-     :short-html short-html
-     :image image}))
-
-(defn- load-md-files [fileset]
-  (let [files (boot/input-files fileset)
-        files (boot/by-ext [".md"] files)
-        files (map load-md-file files)]
-    {:artikels (vec files)}))
+(ns build
+  (:require
+   [clojure.edn :as edn]
+   [clojure.string :as str]
+   [clojure.java.io :as io]
+   [clojure.tools.build.api :as b]
+   [hiccup.core :refer [h]]
+   [hiccup.page :refer [html5 include-css include-js]]
+   [markdown.core :as markdown]))
 
 (defn- render-artikel [content artikel]
   [:div
    [:article
     [:div (:html artikel)]]
-   [:br][:hr]
+   [:br] [:hr]
    [:i [:a {:href (:url content)} "Zurück zur Startseite..."]]])
 
 (defn- render-main-content [content]
@@ -83,11 +34,11 @@
        [:a {:href (:html-filename artikel)}
         [:h3.post-title (h (:title artikel))]
         [:div
-          (if (:image artikel)
-            [:img {:src (:image artikel)
-                   :style "width: 25%; float: left; margin-right: 1rem;"}])
-          (:short-html artikel)
-          [:div.clearfix]]]]
+         (if (:image artikel)
+           [:img {:src (:image artikel)
+                  :style "width: 25%; float: left; margin-right: 1rem;"}])
+         (:short-html artikel)
+         [:div.clearfix]]]]
       [:hr]
       [:br]])])
 
@@ -135,8 +86,6 @@
         (for [spieler (:spieler mansch)]
           [:div (h spieler)])]]))])
 
-
-
 (defn- render-page [content artikel]
   {:head [:head
           [:meta {:charset "utf-8"}]
@@ -180,41 +129,80 @@
 
             [:div#sidebar.col-sm-4 (render-sidebar content)]]]
 
-
-
-          ;; (include-js "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js")
+;; (include-js "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js")
           ;; (include-js "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
 
           (include-js "vendor/jquery/jquery.min.js")
           (include-js "vendor/bootstrap/js/bootstrap.min.js")
           (include-js "js/clean-blog.min.js")]})
 
+(defn load-content []
+  (-> "./content/content.edn"
+      io/as-file
+      slurp
+      edn/read-string))
 
+(defn- load-md-file [file]
+  (let [md (slurp file)
+        html (markdown/md-to-html-string md)
+        name (-> file .getName)
+        name (.substring name 0 (.lastIndexOf name "."))
+        title (.substring
+               (first (str/split-lines md))
+               2)
+        lines (str/split-lines md)
+        line-count (count lines)
+        short-md (nth lines 2)
+        short-html (markdown/md-to-html-string short-md)
+        image-line (if (> line-count 3) (nth lines 4) nil)
+        image (if (and image-line (.startsWith image-line "!["))
+                (.substring
+                 image-line
+                 (inc (.indexOf image-line "("))
+                 (dec (.length image-line)))
+                nil)]
+        ; image (if
+        ;         (and (not (nil? image)) (.startsWith image "!["))
+        ;         image
+        ;         nil)]
+        ; image (if
+        ;         (.startsWith image "![")
 
-(boot/deftask homepage
-  "Build static site"
-  []
-  (let [tmp (boot/tmp-dir!)]
-    (fn middleware [next-handler]
-      (fn handler [fileset]
-        (boot/empty-dir! tmp)
-        (let [content (-> (boot/tmp-get fileset "content.edn")
-                          boot/tmp-file
-                          slurp
-                          edn/read-string)
-              content (merge content (load-md-files fileset))
-              index-page (render-page content nil)]
-          (spit
-           (io/file tmp "index.html")
-           (html5 (:head index-page) (:body index-page)))
-          (doall (for [artikel (:artikels content)]
-                   (let [page (render-page content artikel)]
-                     (spit
-                      (io/file tmp (str (:html-filename artikel)))
-                      (html5 (:head page) (:body page)))))))
+        ;         nil)]
 
+    {:name name
+     :html-filename (str name ".html")
+     :md md
+     :html html
+     :title title
+     :short-html short-html
+     :image image}))
 
-        (-> fileset
-            (boot/add-resource tmp)
-            (boot/commit!)
-            next-handler)))))
+(defn- load-md-files []
+  (->> "./content/"
+       io/as-file
+       .listFiles
+       (filter (fn [file]
+                 (-> file .getName (.endsWith ".md"))))
+       (map load-md-file)))
+
+(defn clean [_]
+  (b/delete {:path "target"}))
+
+(defn build [_]
+  (clean nil)
+  (let [content (load-content)
+        content (assoc content :artikels (load-md-files))
+        index-page (render-page content nil)]
+    (doall (for [artikel (:artikels content)]
+             (let [page (render-page content artikel)]
+               (b/write-file
+                {:path (str "target/" (:html-filename artikel))
+                 :string (html5 (:head page) (:body page))}))))
+    (b/write-file
+     {:path "target/index.html"
+      :string (html5 (:head index-page) (:body index-page))})
+    (b/copy-dir
+     {:src-dirs ["ressources" "content"]
+      :target-dir "target"})
+    ))
