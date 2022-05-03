@@ -1,9 +1,9 @@
 #!/bin/bash -e
 
 echo "Building static site..."
-/usr/local/bin/boot -C homepage target
+clojure -T:build build
 
 chmod -R ug+w target
 echo "Uploading to vt-rinteln.de/badminton"
 #ftp -p -i -v vt-rinteln.de < deploy.ftp > ~/badminton-ftp.log
-scp -pqr target/* p18694095@home51008252.1and1-data.host:~/badminton/
+scp -vpqr target/* p18694095@home51008252.1and1-data.host:~/badminton/
