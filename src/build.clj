@@ -17,7 +17,7 @@
 
 (defn- render-main-content [content]
   [:div
-   [:div.dm2020
+   #_[:div.dm2020
     [:a {:href "dm2020/"
          :style "display: flex;
                  justify-content: center;
@@ -86,6 +86,28 @@
         (for [spieler (:spieler mansch)]
           [:div (h spieler)])]]))])
 
+(defn font-faces [family weights]
+  (let [file-prefix (-> family (str/replace " " ""))
+        weights (or (seq weights)
+                    [400])]
+    (->> weights
+         (map (fn [weight]
+                {:family family
+                 :file (str file-prefix "-"
+                            (case weight
+                              100 "Thin"
+                              200 "ExtraLight"
+                              300 "Light"
+                              400 "Regular"
+                              500 "Medium"
+                              600 "SemiBold"
+                              700 "Bold"
+                              800 "ExtraBold"
+                              900 "Black")
+                            ".ttf")
+                 :weight weight})))
+    ))
+
 (defn- render-page [content artikel]
   {:head [:head
           [:meta {:charset "utf-8"}]
@@ -99,14 +121,26 @@
           (include-css "css/clean-blog.min.css")
           (include-css "custom.css")
           (include-css "vendor/font-awesome/css/font-awesome.min.css")
-          (include-css "https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic")
-          (include-css "https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800")
           "<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src=\"https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js\"></script>
         <script src=\"https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js\"></script>
     <![endif]-->"
+
+          [:style
+           (->> (concat
+                 (font-faces "Lora" [400 700])
+                 (font-faces "Open Sans" [300 400 600 700 800])
+                 )
+                (map (fn [font]
+                       (str "\n@font-face {"
+                            " font-family:" "\"" (-> font :family) "\";"
+                            " src: url('" (str "vendor/fonts/" (-> font :file)) "');"
+                            (when-let [s (-> font :weight)]
+                              (str " font-weight: " s ";"))
+                            " }")))
+                (str/join ""))]
 
           [:title (:title content)]]
    :body [:body {:class "body-container"}
@@ -129,7 +163,7 @@
 
             [:div#sidebar.col-sm-4 (render-sidebar content)]]]
 
-;; (include-js "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js")
+          ;; (include-js "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js")
           ;; (include-js "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
 
           (include-js "vendor/jquery/jquery.min.js")
